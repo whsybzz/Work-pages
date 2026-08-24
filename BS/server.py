@@ -265,14 +265,20 @@ def _shell_process_id() -> int | None:
 
 
 def _desktop_user_matches() -> bool:
-    """Check that the service and the visible Windows desktop share a user."""
+    """Check that the service can launch into the visible Windows desktop."""
     shell_pid = _shell_process_id()
     if shell_pid is None:
         return True
     try:
         import psutil
 
-        return psutil.Process().username().casefold() == psutil.Process(shell_pid).username().casefold()
+        current_process = psutil.Process()
+        shell_process = psutil.Process(shell_pid)
+        # A sandbox broker can have a different token while still sharing the
+        # interactive session and WinSta0 desktop with the logged-in user.
+        if current_process.session_id() == shell_process.session_id():
+            return True
+        return current_process.username().casefold() == shell_process.username().casefold()
     except ImportError:
         return True
     except Exception:
