@@ -487,7 +487,7 @@ def launch_executable() -> tuple[bool, int | None, bool, str | None, str | None]
         executable,
         APP_NAME,
         ACTIVE_PROCESS,
-        "当前网页服务不是以 Windows 桌面用户启动的，请双击 BS\\start_server.bat 后再点击“缺陷图片库”。",
+        "当前网页服务不是以 Windows 桌面用户启动的，请双击 BS\\start_remote_server.bat 后再点击“缺陷图片库”。",
     )
     return launched, pid, already_running, str(executable), launch_message
 
@@ -506,7 +506,7 @@ def launch_everything() -> tuple[bool, int | None, bool, str | None, str | None]
                 None,
                 False,
                 str(executable),
-                "当前网页服务不是以 Windows 桌面用户启动的，请双击 BS\\start_server.bat 后再点击“文档管理”。",
+                "当前网页服务不是以 Windows 桌面用户启动的，请双击 BS\\start_remote_server.bat 后再点击“文档管理”。",
             )
 
         launch_target = find_everything_shortcut() or executable
