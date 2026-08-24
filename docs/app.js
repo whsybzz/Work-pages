@@ -111,7 +111,8 @@
       method: "POST",
       headers: {
         Authorization: "Bearer " + remoteConfig.token,
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "bypass-tunnel-reminder": "true"
       },
       body: JSON.stringify({ target: target })
     }).then(function (response) {
@@ -193,7 +194,10 @@
     const button = document.querySelector("[data-remote-test]");
     button.disabled = true;
     fetch(candidate.serviceUrl + "/api/remote/status", {
-      headers: { Authorization: "Bearer " + candidate.token }
+      headers: {
+        Authorization: "Bearer " + candidate.token,
+        "bypass-tunnel-reminder": "true"
+      }
     }).then(function (response) {
       return response.json().catch(function () { return {}; }).then(function (result) {
         if (!response.ok || !result.ok) {
