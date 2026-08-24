@@ -5,7 +5,7 @@
   const launcherStatus = document.querySelector("#launcher-status");
   const launchButtons = document.querySelectorAll("button[data-launch]");
   const everythingButtons = document.querySelectorAll("button[data-launch-everything]");
-  const isStaticDemo = true;
+  const localServiceUrl = "http://127.0.0.1:8765/";
 
   function showToast(message, type) {
     const toast = document.createElement("div");
@@ -76,91 +76,29 @@
     }
   });
 
-  async function launchDefectLibrary(button) {
-    if (isStaticDemo) {
-      launcherStatus.textContent = "在线演示模式";
-      showToast("缺陷图片库需要连接本机 BS 服务，在线演示暂不启动桌面程序", "error");
+  function openLocalLauncher(target, label) {
+    const url = new URL(localServiceUrl);
+    url.searchParams.set("launch", target);
+    launcherStatus.textContent = "正在打开本机服务...";
+    const launchWindow = window.open(url.toString(), "_blank", "noopener,noreferrer");
+    if (!launchWindow) {
+      window.location.assign(url.toString());
       return;
     }
-    launchButtons.forEach(function (item) { item.disabled = true; });
-    launcherStatus.textContent = "正在启动缺陷检测客户端...";
-    try {
-      const response = await fetch("/api/launch-defect-library", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: "{}"
-      });
-      const result = await response.json();
-      if (!response.ok || !result.ok) {
-        throw new Error(result.message || "缺陷检测客户端启动失败");
-      }
-      const suffix = result.already_running ? "客户端已在运行" : "客户端已启动";
-      launcherStatus.textContent = suffix;
-      showToast(suffix + (result.pid ? "，PID " + result.pid : ""));
-    } catch (error) {
-      launcherStatus.textContent = "缺陷检测客户端未启动";
-      showToast(error.message || "无法连接本地启动服务", "error");
-    } finally {
-      window.setTimeout(function () {
-        launchButtons.forEach(function (item) { item.disabled = false; });
-      }, 650);
-    }
+    showToast("已请求打开" + label + "。如果新页面无法打开，请先启动 BS\\start_server.bat");
   }
 
   launchButtons.forEach(function (button) {
     button.addEventListener("click", function () {
-      launchDefectLibrary(button);
+      openLocalLauncher("defect-library", "缺陷检测客户端");
     });
   });
-
-  async function launchEverything() {
-    if (isStaticDemo) {
-      showToast("文档管理需要连接本机 BS 服务，在线演示暂不启动 Everything", "error");
-      return;
-    }
-    everythingButtons.forEach(function (item) { item.disabled = true; });
-    try {
-      const response = await fetch("/api/launch-everything", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: "{}"
-      });
-      const result = await response.json();
-      if (!response.ok || !result.ok) {
-        throw new Error(result.message || "Everything 启动失败");
-      }
-      const suffix = result.already_running ? "Everything 已在运行" : "Everything 已启动";
-      showToast(suffix + (result.pid ? "，PID " + result.pid : ""));
-    } catch (error) {
-      showToast(error.message || "无法连接本地启动服务", "error");
-    } finally {
-      window.setTimeout(function () {
-        everythingButtons.forEach(function (item) { item.disabled = false; });
-      }, 650);
-    }
-  }
 
   everythingButtons.forEach(function (button) {
     button.addEventListener("click", function () {
-      launchEverything();
+      openLocalLauncher("everything", "文档管理");
     });
   });
 
-  if (isStaticDemo) {
-    launcherStatus.textContent = "在线演示模式";
-  } else {
-    fetch("/api/launcher-status")
-      .then(function (response) { return response.json(); })
-      .then(function (result) {
-        if (!result.available) {
-          launcherStatus.textContent = "未找到缺陷检测客户端";
-        }
-        if (!result.everything_available) {
-          showToast("未找到 Everything.exe，请检查桌面快捷方式", "error");
-        }
-      })
-      .catch(function () {
-        launcherStatus.textContent = "本地启动服务未连接";
-      });
-  }
+  launcherStatus.textContent = "在线网页，本机程序按需启动";
 }());
