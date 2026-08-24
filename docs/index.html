@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>板卡检测B/S平台</title>
+  <meta name="description" content="板卡检测 B/S 平台功能入口">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="主菜单">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <span class="brand-chip"></span>
+        </span>
+        <span class="brand-name">板卡检测B/S平台</span>
+      </div>
+
+      <nav class="side-nav">
+        <button class="side-link active" type="button" data-nav="集成入口" aria-current="page">
+          <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6M21 3l-9 9M19 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h6"/></svg>
+          <span>集成入口</span>
+        </button>
+      </nav>
+
+    </aside>
+
+    <section class="workspace">
+      <header class="topbar">
+        <nav class="main-nav" aria-label="顶部导航">
+          <button class="main-nav-link active" type="button" data-nav="首页">⌂&nbsp; 首页</button>
+          <button class="main-nav-link" type="button" data-nav="系统管理">⚙&nbsp; 系统管理</button>
+          <button class="main-nav-link" type="button" data-nav="系统监控">▣&nbsp; 系统监控</button>
+          <button class="main-nav-link" type="button" data-nav="板卡管理">▤&nbsp; 板卡管理</button>
+          <button class="main-nav-link has-caret" type="button" data-nav="更多菜单">更多菜单 <span class="caret" aria-hidden="true"></span></button>
+        </nav>
+        <div class="topbar-actions">
+          <button class="topbar-button" type="button" title="全屏显示" aria-label="全屏显示" data-fullscreen>
+            <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M21 16v5h-5"/></svg>
+          </button>
+          <button class="topbar-button" type="button" title="主题设置" aria-label="主题设置" data-toast="主题设置">
+            <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4"/><circle cx="12" cy="12" r="8"/></svg>
+          </button>
+          <button class="user-menu" type="button" data-toast="用户菜单">
+            <span class="avatar">管</span>
+            <span class="user-name">管理员</span>
+            <span class="caret" aria-hidden="true"></span>
+          </button>
+        </div>
+      </header>
+
+      <div class="tabbar" role="tablist" aria-label="页面标签">
+        <button class="tab active" type="button" role="tab" aria-selected="true" data-tab="首页">首页</button>
+        <button class="tab closable" type="button" role="tab" aria-selected="false" data-tab="字典管理">字典管理 <span class="tab-close" aria-label="关闭">×</span></button>
+        <button class="tab closable" type="button" role="tab" aria-selected="false" data-tab="部门管理">部门管理 <span class="tab-close" aria-label="关闭">×</span></button>
+        <button class="tab closable" type="button" role="tab" aria-selected="false" data-tab="用户管理">用户管理 <span class="tab-close" aria-label="关闭">×</span></button>
+        <button class="tab closable" type="button" role="tab" aria-selected="false" data-tab="菜单管理">菜单管理 <span class="tab-close" aria-label="关闭">×</span></button>
+        <button class="tab active-entry" type="button" role="tab" aria-selected="true" data-tab="集成入口"><span class="tab-dot"></span>集成入口 <span class="tab-close" aria-label="关闭">×</span></button>
+        <button class="tab-more" type="button" title="标签操作" aria-label="标签操作"><span></span><span></span><span></span></button>
+      </div>
+
+      <main class="content">
+        <section class="module-grid" aria-label="功能入口">
+          <article class="module-card" data-card="元器件管理">
+            <div class="module-icon blue" aria-hidden="true">
+              <svg viewBox="0 0 48 48"><path d="M15 18h18v23H15zM19 18v-5h10v5M11 22h4M33 22h4M11 29h4M33 29h4M11 36h4M33 36h4M21 24h6v8h-6z"/></svg>
+            </div>
+            <h2>元器件管理</h2>
+            <p>四维元件库元器件管理界面</p>
+            <button class="module-link" type="button" data-toast="元器件管理">点击跳转 <span aria-hidden="true">→</span></button>
+          </article>
+
+          <article class="module-card" data-card="板卡 BOM 查询">
+            <div class="module-icon green" aria-hidden="true">
+              <svg viewBox="0 0 48 48"><path d="M17 11h14v5h5v25H12V16h5zM17 16h14M19 23h10M19 29h10M19 35h6"/></svg>
+            </div>
+            <h2>板卡 BOM 查询</h2>
+            <p>板卡 BOM 清单查询入口</p>
+            <button class="module-link" type="button" data-toast="板卡 BOM 查询">点击跳转 <span aria-hidden="true">→</span></button>
+          </article>
+
+          <article class="module-card" data-card="国产化替代">
+            <div class="module-icon orange" aria-hidden="true">
+              <svg viewBox="0 0 48 48"><path d="M34 17a13 13 0 1 0 2 12M34 17v-8M34 17h8"/><path d="M14 31a13 13 0 0 0 20 0"/></svg>
+            </div>
+            <h2>国产化替代</h2>
+            <p>国产化替代信息查询入口</p>
+            <button class="module-link" type="button" data-toast="国产化替代">点击跳转 <span aria-hidden="true">→</span></button>
+          </article>
+
+          <article class="module-card" data-card="图像识别管理">
+            <div class="module-icon coral" aria-hidden="true">
+              <svg viewBox="0 0 48 48"><rect x="10" y="11" width="28" height="26" rx="1"/><circle cx="19" cy="19" r="3"/><path d="m12 33 8-8 6 5 4-4 6 7"/></svg>
+            </div>
+            <h2>图像识别管理</h2>
+            <p>图像识别结果管理</p>
+            <button class="module-link" type="button" data-toast="图像识别管理">点击跳转 <span aria-hidden="true">→</span></button>
+          </article>
+
+          <article class="module-card" data-card="缺陷图片库" data-launch>
+            <div class="module-icon coral" aria-hidden="true">
+              <svg viewBox="0 0 48 48"><rect x="10" y="11" width="28" height="26" rx="1"/><circle cx="19" cy="19" r="3"/><path d="m12 33 8-8 6 5 4-4 6 7"/></svg>
+            </div>
+            <h2>缺陷图片库</h2>
+            <p>缺陷图片库查询入口</p>
+            <button class="module-link" type="button" data-launch>点击跳转 <span aria-hidden="true">→</span></button>
+          </article>
+
+          <article class="module-card" data-card="文档管理" data-launch-everything>
+            <div class="module-icon purple" aria-hidden="true">
+              <svg viewBox="0 0 48 48"><path d="M9 15h11l3 4h16v20H9z"/><path d="M9 15v-3h12l3 4"/></svg>
+            </div>
+            <h2>文档管理</h2>
+            <p>支持 Excel/Word/PDF 上传与查看</p>
+            <button class="module-link" type="button" data-launch-everything>点击跳转 <span aria-hidden="true">→</span></button>
+          </article>
+        </section>
+
+      </main>
+
+      <footer class="statusbar">
+        <span class="status-light"></span>
+        <span>系统运行正常</span>
+        <span class="status-divider"></span>
+        <span id="launcher-status">缺陷检测客户端待命</span>
+      </footer>
+    </section>
+  </div>
+
+  <div class="toast-region" aria-live="polite" aria-atomic="true"></div>
+  <script src="app.js"></script>
+</body>
+</html>
