@@ -472,7 +472,7 @@ def _launch_named_executable(
             last_pid,
             False,
             active_process,
-            "客户端进程已创建，但没有检测到可见窗口，请确认服务和桌面客户端属于同一 Windows 用户。",
+            "客户端进程已创建，但没有检测到可见窗口，请确认服务运行在当前登录用户的 Windows 桌面会话中。",
         )
 
     active_process = subprocess.Popen(
@@ -493,7 +493,7 @@ def launch_executable() -> tuple[bool, int | None, bool, str | None, str | None]
         executable,
         APP_NAME,
         ACTIVE_PROCESS,
-        "当前网页服务不是以 Windows 桌面用户启动的，请双击 BS\\start_remote_server.bat 后再点击“缺陷图片库”。",
+        "当前网页服务不在当前登录用户的 Windows 桌面会话中，请双击 BS\\start_remote_server.bat 后再点击“缺陷图片库”。",
     )
     return launched, pid, already_running, str(executable), launch_message
 
@@ -512,7 +512,7 @@ def launch_everything() -> tuple[bool, int | None, bool, str | None, str | None]
                 None,
                 False,
                 str(executable),
-                "当前网页服务不是以 Windows 桌面用户启动的，请双击 BS\\start_remote_server.bat 后再点击“文档管理”。",
+                "当前网页服务不在当前登录用户的 Windows 桌面会话中，请双击 BS\\start_remote_server.bat 后再点击“文档管理”。",
             )
 
         launch_target = find_everything_shortcut() or executable
@@ -616,7 +616,7 @@ class RequestHandler(SimpleHTTPRequestHandler):
                     "ok": False,
                     "message": (
                         launch_message
-                        or "客户端进程已创建，但没有检测到可见窗口，请确认服务和桌面客户端属于同一 Windows 用户。"
+                        or "客户端进程已创建，但没有检测到可见窗口，请确认服务运行在当前登录用户的 Windows 桌面会话中。"
                     ),
                     "pid": pid,
                     "executable": executable,
