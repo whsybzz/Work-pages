@@ -39,6 +39,9 @@
           <button class="topbar-button" type="button" title="全屏显示" aria-label="全屏显示" data-fullscreen>
             <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M21 16v5h-5"/></svg>
           </button>
+          <button class="topbar-button" type="button" title="远程连接设置" aria-label="远程连接设置" data-remote-settings>
+            <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="m8.6 10.6 6.8-3.2M8.6 13.4l6.8 3.2"/></svg>
+          </button>
           <button class="topbar-button" type="button" title="主题设置" aria-label="主题设置" data-toast="主题设置">
             <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4"/><circle cx="12" cy="12" r="8"/></svg>
           </button>
@@ -129,6 +132,33 @@
   </div>
 
   <div class="toast-region" aria-live="polite" aria-atomic="true"></div>
+  <div class="remote-dialog-backdrop" data-remote-dialog hidden>
+    <section class="remote-dialog" role="dialog" aria-modal="true" aria-labelledby="remote-dialog-title">
+      <header class="remote-dialog-header">
+        <div>
+          <span class="dialog-kicker">REMOTE AGENT</span>
+          <h2 id="remote-dialog-title">远程连接</h2>
+        </div>
+        <button class="dialog-close" type="button" title="关闭" aria-label="关闭" data-remote-close>×</button>
+      </header>
+      <div class="remote-dialog-body">
+        <label class="remote-field">
+          <span>远程服务地址</span>
+          <input type="url" autocomplete="url" placeholder="https://你的隧道地址" data-remote-url>
+        </label>
+        <label class="remote-field">
+          <span>访问令牌</span>
+          <input type="password" autocomplete="off" placeholder="粘贴远程电脑窗口显示的令牌" data-remote-token>
+        </label>
+        <p class="remote-dialog-note">远程电脑需要先运行 BS\start_remote_server.bat，并通过 HTTPS 隧道访问。</p>
+      </div>
+      <footer class="remote-dialog-footer">
+        <button class="dialog-button secondary" type="button" data-remote-test>测试连接</button>
+        <button class="dialog-button primary" type="button" data-remote-save>保存连接</button>
+      </footer>
+    </section>
+  </div>
+  <script src="remote-config.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
