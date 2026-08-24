@@ -646,7 +646,7 @@ class RequestHandler(SimpleHTTPRequestHandler):
         self.send_response(204)
         self._add_cors_headers()
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-        self.send_header("Access-Control-Allow-Headers", "Authorization, Content-Type, X-PCB-Access-Token")
+        self.send_header("Access-Control-Allow-Headers", "Authorization, Content-Type, X-PCB-Access-Token, bypass-tunnel-reminder")
         self.send_header("Access-Control-Max-Age", "600")
         self.end_headers()
 
